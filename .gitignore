@@ -6,3 +6,4 @@
 *.mf
 *.tar.gz
 usr/bin/
+.migrant.d/
