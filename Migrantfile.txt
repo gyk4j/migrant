@@ -1,0 +1,2 @@
+var1=A long sentence with spaces.
+var2="This is a quoted sentence."
