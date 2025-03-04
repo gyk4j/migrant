@@ -13,7 +13,7 @@ function Dump-Config {
 
 function Init-Home {
   Set-Variable -Name "MIGRANT_HOME" -Value ".migrant.d" -Scope script
-  "boxes", "data", "gems", "insecure_private_keys", "rgloader,tmp" | ForEach-Object { New-Item -ItemType Directory -Path "$MIGRANT_HOME\$_" -Force } | Out-Null
+  "boxes", "data", "gems", "insecure_private_keys", "rgloader", "tmp" | ForEach-Object { New-Item -ItemType Directory -Path "$MIGRANT_HOME\$_" -Force } | Out-Null
   "fp-leases", "machine-index" | ForEach-Object { New-Item -ItemType Directory -Path "$MIGRANT_HOME\data\$_" -Force } | Out-Null
   "1.0" | Out-File -FilePath "$MIGRANT_HOME\setup_version"
   [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
