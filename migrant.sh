@@ -1,10 +1,21 @@
 #!/bin/bash
 
-while IFS== read -r key value
-do 
-  #echo "$key: $value"
-  eval $key='$value'
-done < "Migrantfile.txt"
+read_config() {
+  while IFS== read -r key value
+  do 
+    #echo "$key: $value"
+    eval $key='$value'
+  done < "Migrantfile.txt"
+}
 
-echo "Unquoted: $var1"
-echo "  Quoted: $var2"
+dump_config() {
+  echo "Unquoted: $var1"
+  echo "  Quoted: $var2"
+}
+
+main() {
+  read_config
+  dump_config
+}
+
+main
