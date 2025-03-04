@@ -1,4 +1,4 @@
-config.vm.box=boxomatic/alpine-3.20
-config.vm.box_version=20240704.0.1
-config.vm.provider.memory=512
-config.vm.provider.cpus=1
+config_vm_box=boxomatic/alpine-3.20
+config_vm_box_version=20240704.0.1
+config_vm_provider_memory=512
+config_vm_provider_cpus=1
