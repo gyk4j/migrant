@@ -1,0 +1,7 @@
+*.box
+*.ova
+*.ovf
+*.vmdk
+*.vdi
+*.mf
+*.tar.gz
