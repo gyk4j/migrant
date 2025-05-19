@@ -1,5 +1,6 @@
 # migrant
-A minimalist Vagrant replacement for Oracle VirtualBox.
+A minimalist [Vagrant](https://www.vagrantup.com/) replacement for 
+[Oracle VirtualBox](https://www.virtualbox.org/).
 
 ## Installation
 
@@ -9,7 +10,7 @@ external binary tools/dependencies.
 | Operating System | Language   |     curl    |     jq      |    tar      |
 |------------------|------------|:-----------:|:-----------:|:-----------:|
 | Linux            | Bash       |      *      |[Install][0] |     *       |
-| Windows          | Batch      |[Download][1]|[Download][2]|[Download][3]|
+| Windows          | Batch/CMD  |[Download][1]|[Download][2]|[Download][3]|
 | Windows          | PowerShell |             |             |[Download][3]|
 
 \* Usually already pre-installed. No action needed.
