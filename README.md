@@ -20,14 +20,17 @@ A minimalist [Vagrant](https://www.vagrantup.com/) replacement for
 > - Different operating systems have missing tools that require extra third 
 >   party ones to be installed, especially for handling `tar.gz` compressed 
 >   data and parsing JSON data.
-> - The [batch file] scripting language is limited; it requires hacks for
->   basic string parsing and manipulation, and splitting codes into blocks and 
->   functions.
+> - The [batch file](https://en.wikipedia.org/wiki/Batch_file) scripting 
+>   language is limited; it requires hacks for basic string parsing and 
+>   manipulation, and splitting codes into blocks and functions.
 >   
 > All these add to the complexity of deployment and usage on end-user systems.
 > Thus, another programming language for a new implementation is required.
 
 ## Installation
+
+> [!IMPORTANT]
+> The following information is outdated.
 
 There are implementations for Bash Shell, Batch and PowerShell, which require
 external binary tools/dependencies.
@@ -38,7 +41,7 @@ external binary tools/dependencies.
 | Windows          | Batch/CMD  |[Download][1]|[Download][2]|[Download][3]|
 | Windows          | PowerShell |             |             |[Download][3]|
 
-\* Usually already pre-installed. No action needed.
+\* Usually pre-installed. No further action is needed.
 
 [0]: https://jqlang.org/download/
 [1]: https://curl.se/windows/
