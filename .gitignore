@@ -7,4 +7,3 @@
 *.tar.gz
 usr/bin/
 .migrant.d/
-*.json
