@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "config": {
+    "vm": {
+      "provider": {
+        "virtualbox": {
+          "name": "jenkins-server-01",
+          "memory": 1024,
+          "cpus": 2
+        }        
+      },
+      "box": "centos/8",
+      "hostname": "jenkin01",
+      "network": {
+        "private_network": {
+          "ip": "192.168.33.10"
+        }
+      },
+      "provision": {
+        "shell": {
+          "path": "https://gist.githubusercontent.com/sharadchhetri/cfe3c76791b41b0f245f43dd127b0810/raw/947d9d95159866af0cc1c9fa8d0249c66546a6a8/install-jenkins-centos.sh"
+        },
+        "inline": [
+          "ls",
+          "pwd"
+        ]
+      }
+    }
+  }
+}
