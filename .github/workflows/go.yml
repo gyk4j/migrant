@@ -1,0 +1,52 @@
+# This workflow will build a golang project
+# For more information see: https://docs.github.com/en/actions/automating-builds-and-tests/building-and-testing-go
+
+name: Go
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+
+env:
+  PROJECT_NAME: ${{ github.event.repository.name }}
+
+jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    env:
+      LDFLAGS: -ldflags "-s -w"
+      ARCH: amd64
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Go
+      uses: actions/setup-go@v4
+      with:
+        go-version: '1.20'
+
+    - name: Download dependencies
+      run: go mod download
+
+    - name: Create dist
+      run: |
+        mkdir -p ./dist/linux-x86_64/bin
+        mkdir -p ./dist/windows-x86_64/bin
+        cp LICENSE ./dist/
+        cp README.md ./dist/
+
+    - name: Build Linux binary
+      run: GOOS=linux GOARCH=$ARCH go build -v $LDFLAGS -o ./dist/linux-x86_64/bin/${PROJECT_NAME}
+
+    - name: Build Windows binary
+      run: GOOS=windows GOARCH=$ARCH go build -v $LDFLAGS -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe
+
+    #- name: Test
+    #  run: go test -v ./...
+    
+    - name: Upload artifact
+      uses: actions/upload-pages-artifact@v3
+      with:
+          path: './dist'
