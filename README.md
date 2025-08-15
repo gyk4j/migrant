@@ -1,3 +1,5 @@
+[![Go](https://github.com/gyk4j/migrant/actions/workflows/go.yml/badge.svg)](https://github.com/gyk4j/migrant/actions/workflows/go.yml)
+
 # migrant
 A minimalist [Vagrant](https://www.vagrantup.com/) replacement for 
 [Oracle VirtualBox](https://www.virtualbox.org/).
