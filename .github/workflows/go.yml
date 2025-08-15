@@ -47,6 +47,9 @@ jobs:
     #  run: go test -v ./...
     
     - name: Upload artifact
-      uses: actions/upload-pages-artifact@v3
+      uses: actions/upload-artifact@v4
       with:
-          path: './dist'
+        name: ${{ env.PROJECT_NAME }}-bin-${{ github.sha }}
+        path: ./dist/
+        if-no-files-found: error
+        retention-days: 1
