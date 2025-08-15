@@ -38,10 +38,10 @@ jobs:
         cp README.md ./dist/
 
     - name: Build Linux binary
-      run: GOOS=linux GOARCH=$ARCH go build -v $LDFLAGS -o ./dist/linux-x86_64/bin/${PROJECT_NAME}
+      run: GOOS=linux GOARCH=$ARCH go build -o ./dist/linux-x86_64/bin/${PROJECT_NAME} -v $LDFLAGS
 
     - name: Build Windows binary
-      run: GOOS=windows GOARCH=$ARCH go build -v $LDFLAGS -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe
+      run: GOOS=windows GOARCH=$ARCH go build -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe -v $LDFLAGS
 
     #- name: Test
     #  run: go test -v ./...
