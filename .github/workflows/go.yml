@@ -17,7 +17,7 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      LDFLAGS: -ldflags="-s -w"
+      LDFLAGS: -s -w
       ARCH: amd64
     steps:
     - uses: actions/checkout@v4
@@ -38,10 +38,10 @@ jobs:
         cp README.md ./dist/
 
     - name: Build Linux binary
-      run: GOOS=linux GOARCH=$ARCH go build -o ./dist/linux-x86_64/bin/${PROJECT_NAME} -v $LDFLAGS
+      run: GOOS=linux GOARCH=$ARCH go build -o ./dist/linux-x86_64/bin/${PROJECT_NAME} -v -ldflags="$LDFLAGS"
 
     - name: Build Windows binary
-      run: GOOS=windows GOARCH=$ARCH go build -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe -v $LDFLAGS
+      run: GOOS=windows GOARCH=$ARCH go build -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe -v -ldflags="$LDFLAGS"
 
     #- name: Test
     #  run: go test -v ./...
