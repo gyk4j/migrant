@@ -8,4 +8,4 @@ migrant: main.go
 	go build $(LDFLAGS)
 
 clean:
-	rm migrant*
+	rm -f migrant*
