@@ -36,14 +36,8 @@ jobs:
     - name: Download dependencies
       run: go mod download
 
-    - name: Create dist
-      run: |
-        mkdir -p ./dist/${{ matrix.goos }}-${{ matrix.goarch }}/bin
-        cp LICENSE ./dist/
-        cp README.md ./dist/
-
     - name: Build ${{ matrix.goos }}-${{ matrix.goarch }} binary
-      run: GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -o ./dist/${{ matrix.goos }}-${{ matrix.goarch }}/bin/${PROJECT_NAME} -v -ldflags="$LDFLAGS"
+      run: GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -ldflags="$LDFLAGS"
 
     #- name: Test
     #  run: go test -v ./...
@@ -51,7 +45,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-bin-${{ github.sha }}
-        path: ./dist/
+        name: ${{ env.PROJECT_NAME }}-${{ matrix.goos }}-${{ matrix.goarch }}
+        path: ${{ env.PROJECT_NAME }}*
         if-no-files-found: error
         retention-days: 1
