@@ -19,6 +19,12 @@ jobs:
     env:
       LDFLAGS: -s -w
       ARCH: amd64
+    strategy:
+      max-parallel: 1
+      fail-fast: true
+      matrix:
+        goos: ["linux", "windows"]
+        goarch: ["386", "amd64"]
     steps:
     - uses: actions/checkout@v4
 
@@ -30,18 +36,8 @@ jobs:
     - name: Download dependencies
       run: go mod download
 
-    - name: Create dist
-      run: |
-        mkdir -p ./dist/linux-x86_64/bin
-        mkdir -p ./dist/windows-x86_64/bin
-        cp LICENSE ./dist/
-        cp README.md ./dist/
-
-    - name: Build Linux binary
-      run: GOOS=linux GOARCH=$ARCH go build -o ./dist/linux-x86_64/bin/${PROJECT_NAME} -v -ldflags="$LDFLAGS"
-
-    - name: Build Windows binary
-      run: GOOS=windows GOARCH=$ARCH go build -o ./dist/windows-x86_64/bin/${PROJECT_NAME}.exe -v -ldflags="$LDFLAGS"
+    - name: Build ${{ matrix.goos }}-${{ matrix.goarch }} binary
+      run: GOOS=${{ matrix.goos }} GOARCH=${{ matrix.goarch }} go build -ldflags="$LDFLAGS"
 
     #- name: Test
     #  run: go test -v ./...
@@ -49,7 +45,7 @@ jobs:
     - name: Upload artifact
       uses: actions/upload-artifact@v4
       with:
-        name: ${{ env.PROJECT_NAME }}-bin-${{ github.sha }}
-        path: ./dist/
+        name: ${{ env.PROJECT_NAME }}-${{ matrix.goos }}-${{ matrix.goarch }}
+        path: ${{ env.PROJECT_NAME }}*
         if-no-files-found: error
         retention-days: 1
