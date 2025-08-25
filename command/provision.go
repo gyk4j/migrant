@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var provisionCmd *flag.FlagSet
-
-func init() {
-  provisionCmd = flag.NewFlagSet("provision", flag.ExitOnError)
+type ProvisionCmd struct {
+  SubCmd
 }
 
-func Provision() {
-  fmt.Println("provision")
-  provisionCmd.Parse(os.Args[2:])
+func NewProvisionCmd(name string) (*ProvisionCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &ProvisionCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *ProvisionCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }

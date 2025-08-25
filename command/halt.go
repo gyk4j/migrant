@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var haltCmd *flag.FlagSet
-
-func init() {
-  haltCmd = flag.NewFlagSet("halt", flag.ExitOnError)
+type HaltCmd struct {
+  SubCmd
 }
 
-func Halt() {
-  fmt.Println("halt")
-  haltCmd.Parse(os.Args[2:])
+func NewHaltCmd(name string) (*HaltCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &HaltCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *HaltCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }

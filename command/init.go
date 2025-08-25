@@ -1,19 +1,25 @@
 package command
 
 import (
-	"fmt"
-	"flag"
-	"os"
+  "fmt"
 )
 
-var initCmd *flag.FlagSet
-
-func init() {
-	initCmd = flag.NewFlagSet("init", flag.ExitOnError)
-  // box := initCmd.String("", "", "")
+type InitCmd struct {
+  SubCmd
 }
 
-func Init() {
-  fmt.Println("init")
-	initCmd.Parse(os.Args[2:])
+func NewInitCmd(name string) (*InitCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &InitCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *InitCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }

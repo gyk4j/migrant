@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var sshCmd *flag.FlagSet
-
-func init() {
-  sshCmd = flag.NewFlagSet("ssh", flag.ExitOnError)
+type SshCmd struct {
+  SubCmd
 }
 
-func Ssh() {
-  fmt.Println("ssh")
-  sshCmd.Parse(os.Args[2:])
+func NewSshCmd(name string) (*SshCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &SshCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *SshCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }
