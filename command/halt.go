@@ -8,7 +8,7 @@ type HaltCmd struct {
   SubCmd
 }
 
-func NewHaltCmd(name string) (*HaltCmd, error) {
+func newHaltCmd(name string) (*HaltCmd, error) {
   sc, err := newSubCmd(name)
   instance := &HaltCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewHaltCmd(name string) (*HaltCmd, error) {
   return instance, err
 }
 
-func (c *HaltCmd) Run(args []string) {
+func (c *HaltCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

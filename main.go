@@ -18,48 +18,14 @@ func main() {
 
   flag.Parse()
 
-  commands := make(map[string]command.Runnable)
-  var cmd command.Runnable
+  cf, err := command.NewCmdFactory()
+  status, err := cf.Run(os.Args[1], os.Args[2:])
 
-  cmd, _ = command.NewHelpCmd("help")
-  commands["help"] = cmd
-
-  cmd, _ = command.NewStatusCmd("status")
-  commands["status"] = cmd
-
-  cmd, _ = command.NewGlobalStatusCmd("global-status")
-  commands["global-status"] = cmd
-
-  cmd, _ = command.NewVersionCmd("version")
-  commands["version"] = cmd
-
-  cmd, _ = command.NewInitCmd("init")
-  commands["init"] = cmd
-
-  cmd, _ = command.NewUpCmd("up")
-  commands["up"] = cmd
-
-  cmd, _ = command.NewSshCmd("ssh")
-  commands["ssh"] = cmd
-
-  cmd, _ = command.NewReloadCmd("reload")
-  commands["reload"] = cmd
-
-  cmd, _ = command.NewProvisionCmd("provision")
-  commands["provision"] = cmd
-
-  cmd, _ = command.NewHaltCmd("halt")
-  commands["halt"] = cmd
-
-  cmd, _ = command.NewDestroyCmd("destroy")
-  commands["destroy"] = cmd
-
-  cmd = commands[os.Args[1]]
+  fmt.Println(status)
   
-  if cmd != nil {
-    cmd.Run(os.Args[2:])
-  } else {
-    fmt.Println("Usage: ", filepath.Base(os.Args[0]), "{help|status|global-status|version|init|up|ssh|reload|provision|halt|destroy}")
+  if err != nil {
+    fmt.Println(err.Error())
     os.Exit(1)
   }
+
 }

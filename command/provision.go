@@ -8,7 +8,7 @@ type ProvisionCmd struct {
   SubCmd
 }
 
-func NewProvisionCmd(name string) (*ProvisionCmd, error) {
+func newProvisionCmd(name string) (*ProvisionCmd, error) {
   sc, err := newSubCmd(name)
   instance := &ProvisionCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewProvisionCmd(name string) (*ProvisionCmd, error) {
   return instance, err
 }
 
-func (c *ProvisionCmd) Run(args []string) {
+func (c *ProvisionCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

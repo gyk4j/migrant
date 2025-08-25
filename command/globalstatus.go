@@ -8,7 +8,7 @@ type GlobalStatusCmd struct {
   SubCmd
 }
 
-func NewGlobalStatusCmd(name string) (*GlobalStatusCmd, error) {
+func newGlobalStatusCmd(name string) (*GlobalStatusCmd, error) {
   sc, err := newSubCmd(name)
   instance := &GlobalStatusCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewGlobalStatusCmd(name string) (*GlobalStatusCmd, error) {
   return instance, err
 }
 
-func (c *GlobalStatusCmd) Run(args []string) {
+func (c *GlobalStatusCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

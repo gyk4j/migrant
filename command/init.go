@@ -8,7 +8,7 @@ type InitCmd struct {
   SubCmd
 }
 
-func NewInitCmd(name string) (*InitCmd, error) {
+func newInitCmd(name string) (*InitCmd, error) {
   sc, err := newSubCmd(name)
   instance := &InitCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewInitCmd(name string) (*InitCmd, error) {
   return instance, err
 }
 
-func (c *InitCmd) Run(args []string) {
+func (c *InitCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

@@ -8,7 +8,7 @@ type DestroyCmd struct {
   SubCmd
 }
 
-func NewDestroyCmd(name string) (*DestroyCmd, error) {
+func newDestroyCmd(name string) (*DestroyCmd, error) {
   sc, err := newSubCmd(name)
   instance := &DestroyCmd{
     *sc,
@@ -19,7 +19,8 @@ func NewDestroyCmd(name string) (*DestroyCmd, error) {
   return instance, err
 }
 
-func (c *DestroyCmd) Run(args []string) {
+func (c *DestroyCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }
+
