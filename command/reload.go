@@ -8,7 +8,7 @@ type ReloadCmd struct {
   SubCmd
 }
 
-func NewReloadCmd(name string) (*ReloadCmd, error) {
+func newReloadCmd(name string) (*ReloadCmd, error) {
   sc, err := newSubCmd(name)
   instance := &ReloadCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewReloadCmd(name string) (*ReloadCmd, error) {
   return instance, err
 }
 
-func (c *ReloadCmd) Run(args []string) {
+func (c *ReloadCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

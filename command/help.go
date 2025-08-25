@@ -8,7 +8,7 @@ type HelpCmd struct {
   SubCmd
 }
 
-func NewHelpCmd(name string) (*HelpCmd, error) {
+func newHelpCmd(name string) (*HelpCmd, error) {
   sc, err := newSubCmd(name)
   instance := &HelpCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewHelpCmd(name string) (*HelpCmd, error) {
   return instance, err
 }
 
-func (c *HelpCmd) Run(args []string) {
+func (c *HelpCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

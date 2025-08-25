@@ -8,7 +8,7 @@ type VersionCmd struct {
   SubCmd
 }
 
-func NewVersionCmd(name string) (*VersionCmd, error) {
+func newVersionCmd(name string) (*VersionCmd, error) {
   sc, err := newSubCmd(name)
   instance := &VersionCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewVersionCmd(name string) (*VersionCmd, error) {
   return instance, err
 }
 
-func (c *VersionCmd) Run(args []string) {
+func (c *VersionCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

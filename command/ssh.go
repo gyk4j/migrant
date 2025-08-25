@@ -8,7 +8,7 @@ type SshCmd struct {
   SubCmd
 }
 
-func NewSshCmd(name string) (*SshCmd, error) {
+func newSshCmd(name string) (*SshCmd, error) {
   sc, err := newSubCmd(name)
   instance := &SshCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewSshCmd(name string) (*SshCmd, error) {
   return instance, err
 }
 
-func (c *SshCmd) Run(args []string) {
+func (c *SshCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

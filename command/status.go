@@ -8,7 +8,7 @@ type StatusCmd struct {
   SubCmd
 }
 
-func NewStatusCmd(name string) (*StatusCmd, error) {
+func newStatusCmd(name string) (*StatusCmd, error) {
   sc, err := newSubCmd(name)
   instance := &StatusCmd{
     *sc,
@@ -19,7 +19,7 @@ func NewStatusCmd(name string) (*StatusCmd, error) {
   return instance, err
 }
 
-func (c *StatusCmd) Run(args []string) {
+func (c *StatusCmd) run(args []string) {
   c.SubCmd.run(args)
   fmt.Println(c.Name)
 }

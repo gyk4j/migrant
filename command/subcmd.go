@@ -18,11 +18,11 @@ func newSubCmd(name string) (*SubCmd, error) {
 	return instance, nil
 }
 
-type Runnable interface {
-	Run(args []string)
-}
-
-func (s SubCmd) run(args []string) {
+func (s *SubCmd) run(args []string) {
 	fmt.Println("Parsing args...")
 	s.cmd.Parse(args)
+}
+
+func (s *SubCmd) getName() string {
+  return s.Name
 }
