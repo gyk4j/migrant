@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var destroyCmd *flag.FlagSet
-
-func init() {
-  destroyCmd = flag.NewFlagSet("destroy", flag.ExitOnError)
+type DestroyCmd struct {
+  SubCmd
 }
 
-func Destroy() {
-  fmt.Println("destroy")
-  destroyCmd.Parse(os.Args[2:])
+func NewDestroyCmd(name string) (*DestroyCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &DestroyCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *DestroyCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }

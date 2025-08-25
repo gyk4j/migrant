@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var globalStatusCmd *flag.FlagSet
-
-func init() {
-  globalStatusCmd = flag.NewFlagSet("global-status", flag.ExitOnError)
+type GlobalStatusCmd struct {
+  SubCmd
 }
 
-func GlobalStatus() {
-  fmt.Println("global-status")
-  globalStatusCmd.Parse(os.Args[2:])
+func NewGlobalStatusCmd(name string) (*GlobalStatusCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &GlobalStatusCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *GlobalStatusCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }

@@ -2,17 +2,24 @@ package command
 
 import (
   "fmt"
-  "flag"
-  "os"
 )
 
-var versionCmd *flag.FlagSet
-
-func init() {
-  versionCmd = flag.NewFlagSet("version", flag.ExitOnError)
+type VersionCmd struct {
+  SubCmd
 }
 
-func Version() {
-  fmt.Println("version")
-  versionCmd.Parse(os.Args[2:])
+func NewVersionCmd(name string) (*VersionCmd, error) {
+  sc, err := newSubCmd(name)
+  instance := &VersionCmd{
+    *sc,
+  }
+
+  // Add additional flagset arguments here
+  
+  return instance, err
+}
+
+func (c *VersionCmd) Run(args []string) {
+  c.SubCmd.run(args)
+  fmt.Println(c.Name)
 }
